@@ -8,10 +8,10 @@
 #rm sample.csv
 
 # Main script
-URL="https://opendata-ajuntament.barcelona.cat/data/dataset/15b349cd-3d4d-4a62-9ad3-d67230029a23/resource/3224123d-488e-4e03-9b64-ed278a9c3c79/download" 
-wget -nv $URL
+ID="https://opendata-ajuntament.barcelona.cat/data/dataset/15b349cd-3d4d-4a62-9ad3-d67230029a23/resource/3224123d-488e-4e03-9b64-ed278a9c3c79/download" 
+curl -o raw_data.csv https://drive.google.com/uc?export=download&id=1jRvPwX7SzXI1o1ZLWyu2bXQuMF7ZDtvG
 
-# Si l'script s'executa sense opcions, mostra la URL de descàrrega i el nombre de
+# Si l'script s'executa sense opcions, mostra la ID de descàrrega i el nombre de
 # columnes i registres. 
 
 # Si s'inclou en la seva invocació l'opció -v, a més,
