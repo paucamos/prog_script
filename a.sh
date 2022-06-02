@@ -4,9 +4,8 @@
 #Data: 30/05/2022
 
 # Testing
-#rm download
-#rm sample.csv
-#rm raw_data.csv
+rm sample.csv
+rm raw_data.csv
 
 # Main script
 URL="https://raw.githubusercontent.com/paucamos/prog_script/main/raw_data.csv" 
@@ -34,7 +33,7 @@ else
     sed -n 2p raw_data.csv > sample.csv
 
     # Delimitador
-    IFS=","
+    IFS=";"
 
     # Per mirar si es numeric o no
     integer='0-9'
