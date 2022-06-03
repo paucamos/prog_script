@@ -3,27 +3,18 @@
 #Usuari de la UOC de l'alumne: paucamos
 #Data: 30/05/2022
 #Objectius de l'script: Cambiar els noms de les columnes
+# per una lectura mes senzilla posteriorment
 #Nom i tipus dels camps manipulats:  Columnes
-BEGIN { FS = ";" }
+BEGIN { 
+    FS = ";"; 
+    counter = 0;
+    print "date;gender;age;course;current_year;GPA;marital_status;depression;anxiety;panic_attacks;seek_help;" > "b0.csv"
+}
 {
-    new_cols["1"]="Date"
-    new_cols["2"]="Gender"
-    new_cols["3"]="Age"
-    new_cols["4"]="Course"
-    new_cols["5"]="CurrentYear"
-    new_cols["6"]="CGPA"
-    new_cols["7"]="MaritalStatus"
-    new_cols["8"]="Depression"
-    new_cols["9"]="Anxiety"
-    new_cols["10"]="PanicAttacks"
-    new_cols["11"]="SeekHelp"
+    # Si es el header l'ignorem
+    if (counter != 0)
+        print $0 >> "b0.csv"
 
-    for(i=1;i<=NF;i++) 
-        $i = new_cols[i]
-    
-    for(i=1; i<=12; i++) 
-        printf $i " "
-
-    print ""
-    exit   
-} 1
+    # Augmentem el contador
+    counter ++
+}
