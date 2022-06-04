@@ -4,7 +4,6 @@
 #Data:
 #Objectius de l'script: Modificar els camps Yes-No amb binaris (1-0)
 #Nom i tipus dels camps manipulats: Depression; Anxiety; PanicAttacks; SeekHelp;
-rm b1.csv
 
 IFS=';'
 while read -ra fields; do

@@ -3,10 +3,6 @@
 #Usuari de la UOC de l'alumne: paucamos
 #Data: 30/05/2022
 
-# Testing
-rm sample.csv
-rm raw_data.csv
-
 # Main script
 URL="https://raw.githubusercontent.com/paucamos/prog_script/main/raw_data.csv" 
 wget -nv $URL
@@ -20,7 +16,7 @@ wget -nv $URL
 # Opcio sense -v
 if [ -z "$1" ]; then
     echo "Numero de registres: $(wc -l < raw_data.csv)"
-    echo "Numero de columnes: $(head -1 raw_data.csv | sed 's/[^,]//g' | wc -c)"
+    echo "Numero de columnes: $(head -1 raw_data.csv | sed 's/[^;]//g' | wc -c)"
 
 # Opcio amb -v
 else
@@ -35,18 +31,29 @@ else
     # Delimitador
     IFS=";"
 
-    # Per mirar si es numeric o no
+    # Per mirar els tipus de dada
     integer='0-9'
+    float='[0-9]*[.][0-9]+'
+    dates='[0-9][0-9]\/'
+    string='A-Za-z'
 
     # Llegim el csv
     while read -r -a fields
     do
-        for (( c=0; c<25; c++ ))
+        for (( c=0; c<11; c++ ))
         do
-            if [[ ${fields[c]} =~ [^$integer] ]]; then
-                echo -n "numeric,"
-            else
-                echo -n "caracters,"
+            if [[ ${fields[c]} =~ $dates ]]; then
+                echo -n "Date: "
+                echo ${fields[c]}
+            elif [[ ${fields[c]} =~ $float ]]; then
+                echo -n "Float: "
+                echo ${fields[c]}
+            elif [[ ${fields[c]} =~ ^[$integer] ]]; then
+                echo -n "Numeric: "
+                echo ${fields[c]}
+            elif [[ ${fields[c]} =~ [$string] ]]; then
+                echo -n "String: "
+                echo ${fields[c]}
             fi
         done
         echo ""
