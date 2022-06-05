@@ -58,4 +58,5 @@ else
         done
         echo ""
     done < sample.csv
+    rm sample.csv
 fi
