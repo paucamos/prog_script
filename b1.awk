@@ -4,9 +4,15 @@
 #Data: 30/05/2022
 #Objectius de l'script: Formatar l'any
 #Nom i tipus dels camps manipulats:  Any, string
-BEGIN { FS = ";"; counter = 0;}
+BEGIN { 
+    if ( system( "[ -f  ./b2.csv ] " )  == 0 ) {
+        printf( "El fitxer ja existeix\n" );
+        exit;
+    }
+    FS = ";"; 
+    counter = 0;
+}
 {
-
     # Li fem un append a un fitxer csv
     if (counter != 0) {
         $0 = $1";"$2";"$3";"$4";"substr($5, 6)";"$6";"$7";"$8";"$9";"$10";"$11";"

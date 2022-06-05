@@ -4,8 +4,12 @@
 #Data: 30/05/2022
 
 # Main script
-URL="https://raw.githubusercontent.com/paucamos/prog_script/main/raw_data.csv" 
-wget -nv $URL
+FILE=./raw_data.csv
+if [ ! -f "$FILE" ]; then
+    echo "Descarregant $FILE."
+    URL="https://raw.githubusercontent.com/paucamos/prog_script/main/raw_data.csv" 
+    wget -nv $URL
+fi
 
 # Si l'script s'executa sense opcions, mostra la URL de descàrrega i el nombre de
 # columnes i registres. 
@@ -21,7 +25,7 @@ if [ -z "$1" ]; then
 # Opcio amb -v
 else
     echo "Numero de registres: $(wc -l < raw_data.csv)"
-    echo "Numero de columnes: $(head -1 raw_data.csv | sed 's/[^,]//g' | wc -c)"
+    echo "Numero de columnes: $(head -1 raw_data.csv | sed 's/[^;]//g' | wc -c)"
     echo "Tipus de fitxer: $(file -ib raw_data.csv)"
     echo "Data types columnes:"
 
